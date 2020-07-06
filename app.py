@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 import joblib as joblib
 
-
 app = Flask(__name__)
 
 # Load ML model
