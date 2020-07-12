@@ -11,18 +11,25 @@ from pathlib import Path
 env_path=Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
-# access variables
+# access variables for db
 import os
+# localhost vars
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 URI = os.getenv('URI')
+# production vars
+HEROKU_USER = os.getenv('HEROKU_USER')
+HEROKU_URI = os.getenv('HEROKU_URI')
+HEROKU_PASSWORD = os.getenv('HEROKU_PASSWORD')
 
 app = Flask(__name__)
 
 # Connect db to app
-app.config['SQLALCHEMY_DATABASE_URI'] = URI
+#app.config['SQLALCHEMY_DATABASE_URI'] = URI
+app.config['SQLALCHEMY_DATABASE_URI'] = HEROKU_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = os.getenv('PASSWORD')
+#app.secret_key = os.getenv('PASSWORD')
+app.secret_key = os.getenv('HEROKU_PASSWORD')
 db.init_app(app)
 
 # TODO style with either CSS or bootstrap = DONE
