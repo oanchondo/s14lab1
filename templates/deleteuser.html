@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable-no, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Delete a User</title>
+
+    <!--Styles -->
+    <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet">
+</head>
+<body>
+<h1>Delete user:</h1>
+    <form class="user-form" method="POST" action="/delete">
+        {{ form.hidden_tag() }}
+        <div class="user-form-group">
+            <h1 class="myClass" id=myId>{{ form.user_id.label }}: </h1>
+            {{ form.user_id }}
+            {% if form.user_id.errors %}
+                {% for error in form.user_id.errors %}
+                    <p class="user-error-message">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="user-form-submit">
+            {{ form.submit }}
+        </div>
+    </form>
+</body>
+</html>
