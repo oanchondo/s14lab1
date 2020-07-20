@@ -4,7 +4,7 @@ from models.homeworkuser import Db, HomeworkUser
 from os import environ
 from flask_heroku import Heroku
 
-load_dotenv('.env')
+#load_dotenv('.env')
 
 app = Flask(__name__)
 heroku = Heroku(app)
