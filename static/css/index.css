@@ -1,42 +1,58 @@
-body {
-  background-color: rgb(47, 79, 79);
+
+* {
+    border: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-size: 16px;
 }
 
 h1 {
-  color: rgb(169, 169, 169);
-  font-family: courier;
-}
-h4 {
-  color: rgb(169, 169, 169);
-  font-family: courier;
-}
-
-p {
-  font-family: courier;
-  font-size: 20px;
-  color: rgb(255, 250, 240);
+    border-bottom: 3px solid orangered;
+    display: inline-flex;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    padding: 0 0 3px 0;
 }
 
-#myId{
-	color: rgb(169, 169, 169);
- 	font-family: courier;
- 	font-size: 18px;
+.slide {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 100px 0 0 0;
+    width: 100vw;
 }
 
-input {
-	border: none;
- 	border-bottom: 2px solid rgb(169, 169, 169);
- 	background-color: rgb(47, 79, 79);
-
+.label {
+    fill: black;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+    text-anchor: middle;
 }
-input[type=button], input[type=submit], input[type=reset] {
- 	background-color: rgb(169, 169, 169);
- 	border: none;
- 	color: rgb(47, 79, 79);
-   	font-family: courier;
-	font-size: 18px;
- 	padding: 16px 32px;
- 	text-decoration: none;
- 	margin: 10px 5px;
- 	cursor: pointer;
-  }
+
+.result {
+    font-family: sans-serif;
+    text-anchor: middle;
+}
+
+.resultS {
+    fill: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+}
+
+.resultL {
+    fill: black;
+    font-size: 18px;
+}

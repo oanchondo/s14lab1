@@ -1,77 +1,26 @@
-<!doctype html>
-<html lang="en">
-	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport"
-	        content="width=device-width, user-scalable-no, initial-scale=1.0, minimum-scale=1.0">
-	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	    <title>Users</title>
+{% extends "layout.html" %}
 
-	    <!-- Styles -->
-	    <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet">
-	</head>
+{% block styles %}
+    <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet">
+{% endblock %}
 
-	<body>
-	<h1>Add user:</h1>
-	<form class="user-form" method="POST" action="/">
-	    {{ form.hidden_tag() }}
-	    <div class="user-form-group">
-	        <h1 class="myClass" id=myId>{{ form.first_name.label }}: </h1>
-	        {{ form.first_name }}
-	        {% if form.first_name.errors %}
-	            {% for error in form.first_name.errors %}
-	                <p class="user-error-message">{{ error }}</p>
-	            {% endfor %}
-	        {% endif %}
-	    </div>
-	    <div class="user-form-group">
-	        <h1 class="myClass" id=myId>{{ form.age.label }}: </h1>
-	        {{ form.age }}
-	        {% if form.age.errors %}
-	            {% for error in form.age.errors %}
-	                <p class="user-error-message">{{ error }}</p>
-	            {% endfor %}
-	        {% endif %}
-	    </div>
-	    <div class="user-form-submit">
-	        {{ form.submit }}
-	    </div>
-	</form>
+{% block scripts %}
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="{{ url_for('static', filename='./js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='./js/bars.js') }}"></script>
+    <script src="{{ url_for('static', filename='./js/scatter.js') }}"></script>
+    <script src="{{ url_for('static', filename='./js/donut.js') }}"></script>
 
-	<h1>Generate random user:</h1>
-	<form class="user-form" method="POST" action="/fake">
-		<input type="submit" value="Generate">
-	</form>
-	
-	<h1>Delete user:</h1>
-	<h4>To delte a user's data, enter the user ID and press 'Enter' to confirm</h4>
-	<form class="user-form" method="POST" action="/delete">
-	    {{ form.hidden_tag() }}
-	    <div class="user-form-group">
-	        <h1 class="myClass" id=myId>{{ form.user_id.label }}: </h1>
-	        {{ form.user_id }}
-	        {% if form.user_id.errors %}
-	            {% for error in form.user_id.errors %}
-	                <p class="user-error-message">{{ error }}</p>
-	            {% endfor %}
-	        {% endif %}
-	    </div>
-	    <div class="user-form-submit">
-	        {{ form.submit }}
-	    </div>
-	</form>
-	<h1> Users: </h1>
-	<h4>To update a user's information, click anywhere on the user's edit line and make changes, then press 'Update' to confirm</h4>
-	{% for user in users %}
-		<p> {{ user.first_name }} </p>
-		<form method="POST" action="./update">
-    		<input type="hidden" value="{{user.first_name}}" name="oldname">
-    		<input type="text" value="{{user.first_name}}" name="newname">
-    		<input type="hidden" value="{{user.age}}" name="oldage">
-    		<input type="text" value="{{user.age}}" name="newage">
-    		<input type="submit" value="Update">
-  		</form>
+{% endblock %}
 
-	{% endfor %}
-	</body>
-</html>
+{% block content %}
+    <header>
+        <h1>D3 from the DB</h1>
+        <h2 id="users">Users: </h2>
+    </header>
+    <div class="slide">
+        <div id="vis1" class="vis"></div>
+        <div id="vis2" class="vis"></div>
+        <div id="vis3" class="vis"></div>
+    </div>
+{% endblock %}
