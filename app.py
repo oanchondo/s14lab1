@@ -2,31 +2,16 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, jsonify
 from models.homeworkuser import Db, HomeworkUser
 from os import environ
-from dotenv import load_dotenv
-from pathlib import Path
+from flask_heroku import Heroku
 
-#load_dotenv('.env')
-
-# path to .env file
-env_path=Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
-
-# access variables for db
-import os
-# localhost vars
-USER = os.getenv('USER')
-PASSWORD = os.getenv('PASSWORD')
-URI = os.getenv('URI')
-# production vars
-HEROKU_USER = os.getenv('HEROKU_USER')
-HEROKU_URI = os.getenv('HEROKU_URI')
-HEROKU_PASSWORD = os.getenv('HEROKU_PASSWORD')
+load_dotenv('.env')
 
 app = Flask(__name__)
+heroku = Heroku(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = HEROKU_URI
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = environ.get('HEROKU_PASSWORD')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:s14a-key@localhost:5433/homework_users_db'
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = environ.get('SECRET_KEY')
 Db.init_app(app)
 
 
